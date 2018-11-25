@@ -1,0 +1,35 @@
+<apex:page controller="Controller_for_detail" sidebar="false">
+    <apex:slds />
+    <apex:form >
+        <apex:pageBlock >
+            <div style="height: 70px; width: 55%;">
+                <div class="slds-page-header__row slds-float_right slds-text-heading_large">
+                    {!products.Name}   
+                </div>
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-size_3-of-12" style="margin-left: 10%">
+                    <apex:image value="{!products.Image_Url__c}" width="300" height="300"/>
+                </div>
+                <div class="slds-col slds-size_6-of-12" style="margin-left: 10%">
+                    <span style="font-size: medium;">AMOUNT:</span><br/>
+                    <span>{!products.Units_Available__c}</span><br/><br/>
+                    <span style="font-size: medium;">TITLE:</span><br/>
+                    <span>{!products.Title__c}</span><br/><br/>
+                    <span style="font-size: medium;">DESCRIPTION:</span><br/>
+                    <span>{!products.Product_Description__c}</span>
+                </div>
+            </div>
+            <div style="height: 50px; width: 52%; ">
+                <div class="slds-float_right ">
+                    <apex:outputLink styleClass="slds-button slds-button_neutral" value="/apex/Product_List" target="blank">
+                    	To Shopping
+                    </apex:outputLink>
+                    <apex:outputLink styleClass="slds-button slds-button_brand" value="/apex/page_for_buy?Id={!products.Id}" target="blank">
+                    	Buy
+                    </apex:outputLink>
+                </div>
+            </div>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

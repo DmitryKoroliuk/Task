@@ -1,0 +1,59 @@
+<apex:page controller="Controller_For_Product_List" sidebar="false">
+    <apex:slds /> 
+    <apex:form >
+        <apex:pageBlock >
+        <h1><div class="slds-text-heading_large slds-m-bottom_x-large">Product List</div></h1>
+        <table>
+            <thead class="slds-border_top slds-border_bottom">
+                <tr>                                                                
+                    <td><div class="slds-text-heading_medium">IMAGE</div></td>
+                    <td></td>
+                    <td><div class="slds-text-heading_medium">TITLE</div></td>
+                    <td><div class="slds-text-heading_medium">DESCRIPTION</div></td>
+                    <td><div class="slds-text-heading_medium">COST</div></td> 
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody class="slds-border_top">
+                <apex:repeat value="{!listProducts}" var="item">
+                    <tr>
+                        <td>
+                            <div class="slds-col slds-size_5-of-12 slds-m-left_x-medium">
+                                 <apex:image value="{!item.Image_Url__c}" width="200" height="200"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="slds-text-heading_small slds-col">
+                            	<apex:outputLink value="/apex/page_for_detail?Id={!item.Id}" target="blank">
+                            		{!item.Name}
+                            	</apex:outputLink>
+                        	</div>    
+                        </td> 
+                        <td>
+                             <div style="width: 300px;">
+                                 {!item.Title__c}
+                            </div>  
+                        </td>
+                        <td>
+                            <div class="slds-col"> 
+                            	<apex:outputText value="{!LEFT(item.Product_Description__c,100)}"></apex:outputText>
+                                <apex:outputLink value="/apex/page_for_detail?Id={!item.Id}" target="blank">...More
+                                	
+                                </apex:outputLink>
+                            </div>
+                        </td>
+                        <td>
+                                {!item.Unit_Price__c} $
+                        </td>
+                        <td>
+                            <apex:outputLink styleClass="slds-button slds-button_brand" value="/apex/page_for_buy?Id={!item.Id}" target="blank">
+                                Buy
+                            </apex:outputLink>
+                        </td>
+                    </tr>
+                </apex:repeat>
+            </tbody>
+        </table><br/>
+       </apex:pageBlock>     
+    </apex:form>
+</apex:page>
